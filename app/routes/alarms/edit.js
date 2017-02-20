@@ -3,13 +3,9 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     model(params) {
-        return {
-            id: params.id,
-            title: "Alarm 1",
-            time: "17:10",
-            on: false,
-            repeated: false
-        };
+        return this.modelFor('application').filter((alarm) => {
+            return alarm.id == parseInt(params.id);
+        }).get('firstObject');
     },
 
     actions: {

@@ -12,8 +12,8 @@ export default Ember.Route.extend({
     },
 
     actions: {
-        save(model) {
-            console.debug(model);
+        save(newAlarm) {
+            this.modelFor('application').push(newAlarm);
             this.transitionTo('index');
         }
     }
