@@ -2,7 +2,7 @@
 <ul>
     {{#each model as |alarm|}}
         <li>
-            <h2>{{alarm.title}}</h2>
+            {{link-to alarm.title "alarms.edit" alarm tagName="h2"}}
             <details>
                 <summary>
                     Um <strong>{{alarm.time}}</strong>
