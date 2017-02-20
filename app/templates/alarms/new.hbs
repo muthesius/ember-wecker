@@ -1,0 +1,7 @@
+<h2>{{model.title}}</h2>
+Um {{input value=model.time}}
+<br>
+An: {{input type="checkbox" checked=model.on}}
+Wiederholt: {{input type="checkbox" checked=model.repeated}}
+
+<button {{action 'save' model}}>Speichern</button>
