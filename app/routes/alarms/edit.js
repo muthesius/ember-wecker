@@ -3,15 +3,21 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
     model(params) {
-        return this.modelFor('application').filter((alarm) => {
-            return alarm.id == parseInt(params.id);
-        }).get('firstObject');
+        return this.store.findRecord('alarm', params.id);
+    },
+
+    // Generic Rollback for dirty models
+    deactivate() {
+        let model = this.get('currentModel');
+        if (model.get('hasDirtyAttributes')) {
+            model.rollbackAttributes();
+        }
     },
 
     actions: {
-        save(model) {
-            console.debug(model);
-            this.transitionTo('index');
+        save() {
+            let model = this.get('currentModel');
+            model.save().then(() => this.transitionTo('index'));
         }
     }
 });
