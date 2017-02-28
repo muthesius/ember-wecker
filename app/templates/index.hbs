@@ -3,11 +3,12 @@
     {{#each model as |alarm|}}
         <li>
             {{link-to alarm.title "alarms.edit" alarm tagName="h2"}}
+            <button{{action 'deleteAlarm' alarm}}>x</button>
             <details>
                 <summary>
                     Um <strong>{{alarm.time}}</strong>
                 </summary>
-                {{#if alarm.repeated}}
+                {{#if alarm.repeat}}
                     <span>täglich</span>
                 {{/if}}
             </details>
